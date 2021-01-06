@@ -1,0 +1,73 @@
+<h2>Calculator</h2>
+
+<table border="1">
+    <tr>
+        <td>Value 1:</td>
+        <td>
+            <input type="text" id="value1" name="value1" />
+        </td>
+    </tr>
+    <tr>
+        <td>Value 2:</td>
+        <td>
+            <input type="text" id="value2" name="value2" />
+        </td>
+    </tr>
+    <tr>
+        <td>Operator:</td>
+        <td>
+            <select id="operator">
+                <option value="addition">+</option>
+                <option value="subtraction">-</option>
+                <option value="multiplication">*</option>
+                <option value="division">/</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Result:</td>
+        <td>
+            <input type="text" id="result" name="result" />
+        </td>
+    </tr>
+</table>
+<input type="submit" id="btn_sub" name="btn_sub" value="Submit" onclick="calculate();" />
+<input type="reset" id="btn_res" name="btn_res" value="Reset" />
+
+</html>
+<script>
+    function calculate() {
+        try {
+            var value1 = parseInt(validate(document.getElementById("value1").value.trim()));
+            var value2 = parseInt(validate(document.getElementById("value2").value.trim()));
+            var operator = document.getElementById('operator').value;
+            document.getElementById("result").value = operate(value1, value2, operator);
+
+        } catch (err) {
+            alert("There was a problem: " + err.messaqge);
+        }
+    }
+
+
+    function operate(value1, value2, operator) {
+        if (operator == 'addition') {
+            return value1 + value2;
+        } else if (operator == 'subtraction') {
+            return value1 - value2;
+        } else if (operator == 'division') {
+            return value1 / value2;
+        } else if (operator == 'multiplication') {
+            return value1 * value2;
+        }
+    }
+
+    function validate(value) {
+        if (value == null || value == "") {
+            alert("Required Field");
+            return 0;
+        } else if (isNaN(value)) {
+            alert("Must be a Number Field");
+            return 0;
+        } else return value;
+    }
+</script>
